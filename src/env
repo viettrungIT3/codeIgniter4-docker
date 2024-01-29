@@ -1,3 +1,10 @@
+UID=1000
+
+MYSQL_HOTNAME=
+MYSQL_DATABASE=
+MYSQL_ROOT_PASSWORD=
+MYSQL_PORT=
+
 #--------------------------------------------------------------------
 # Example Environment Configuration file
 #
@@ -30,13 +37,13 @@
 # DATABASE
 #--------------------------------------------------------------------
 
-# database.default.hostname = localhost
-# database.default.database = ci4
-# database.default.username = root
-# database.default.password = root
-# database.default.DBDriver = MySQLi
-# database.default.DBPrefix =
-# database.default.port = 3306
+database.default.hostname = ${MYSQL_HOTNAME}
+database.default.database = ${MYSQL_DATABASE}
+database.default.username = root
+database.default.password = ${MYSQL_ROOT_PASSWORD}
+database.default.DBDriver = MySQLi
+database.default.DBPrefix =
+database.default.port = ${MYSQL_PORT}
 
 # database.tests.hostname = localhost
 # database.tests.database = ci4_test
@@ -141,3 +148,8 @@
 #--------------------------------------------------------------------
 
 # curlrequest.shareOptions = false
+
+#--------------------------------------------------------------------
+# JWT
+#--------------------------------------------------------------------
+JWT_SECRET = 'JWT SECRET KEY SAMPLE HERE'
