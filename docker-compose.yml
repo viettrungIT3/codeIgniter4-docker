@@ -10,9 +10,14 @@ services:
         command: --default-authentication-plugin=mysql_native_password
         restart: unless-stopped
         volumes:
-            - ./db_data:/usr/data
+            - ./db_data:/var/lib/mysql
+            - ./_db:/backup
         ports:
-            - 3365:3306
+            - ${MYSQL_PORT}:3306
+        networks:
+            codeigniter4:
+                aliases:
+                    - "codeigniter4-db.localhost.com"
     codeigniter4-web:
         build:
             context: .
@@ -32,6 +37,12 @@ services:
             - codeigniter4-db
         links:
             - codeigniter4-db
+        networks:
+            codeigniter4:
+                aliases:
+                    - codeigniter4.localhost.com
 volumes:
     db_data:
     src:
+networks:
+    codeigniter4:
