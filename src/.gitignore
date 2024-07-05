@@ -126,3 +126,12 @@ nb-configuration.xml
 /phpunit*.xml
 /.phpunit.*.cache
 
+# session
+*/writable/session/*
+
+*/.sass-cache/*
+
+
+public/assets/.sass-cache
+public/uploads/*
+composer.lock

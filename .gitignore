@@ -1,2 +1,5 @@
 db_data/*
 apache_log/*
+.vscode/*
+
+src/composer.lock
