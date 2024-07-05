@@ -5,7 +5,7 @@
 1. Start up your application by running:
 
 ```sh
-docker compose up -d
+docker compose --env-file src/.env up -d
 ```
 
 2. Execute a command in a running container
@@ -27,3 +27,6 @@ composer update
 ```sh
 mysql -u username -p database_name < file.sql
 ```
+
+## Source
+https://github.com/Jaironlanda/ci4-feedback-management
