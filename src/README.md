@@ -1,4 +1,8 @@
 # CodeIgniter 4 Application Starter
+![Screenshot 2024-06-18 152820](https://github.com/adnamard/Sikos-/assets/154016314/3bfbeea4-c690-42a9-85fd-9ce11bdb9b6f)
+![Screenshot 2024-06-18 152616](https://github.com/adnamard/Sikos-/assets/154016314/700807f2-dbf8-47cd-8c9b-29a4e5dba854)
+![Screenshot 2024-06-18 152440](https://github.com/adnamard/Sikos-/assets/154016314/80d6e43f-4e60-4e13-a14f-6ce2f0f50894)
+![Screenshot 2024-06-18 152837](https://github.com/adnamard/Sikos-/assets/154016314/f56a2cc5-58b0-4186-be84-fb5dbe055856)
 
 ## What is CodeIgniter?
 
@@ -11,8 +15,8 @@ It has been built from the
 
 More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
 
-The user guide corresponding to the latest version of the framework can be found
-[here](https://codeigniter4.github.io/userguide/).
+You can read the [user guide](https://codeigniter.com/user_guide/)
+corresponding to the latest version of the framework.
 
 ## Installation & updates
 
@@ -55,10 +59,11 @@ PHP version 7.4 or higher is required, with the following extensions installed:
 - [intl](http://php.net/manual/en/intl.requirements.php)
 - [mbstring](http://php.net/manual/en/mbstring.installation.php)
 
-> **Warning**
-> The end of life date for PHP 7.4 was November 28, 2022. If you are
-> still using PHP 7.4, you should upgrade immediately. The end of life date
-> for PHP 8.0 will be November 26, 2023.
+> [!WARNING]
+> The end of life date for PHP 7.4 was November 28, 2022.
+> The end of life date for PHP 8.0 was November 26, 2023.
+> If you are still using PHP 7.4 or 8.0, you should upgrade immediately.
+> The end of life date for PHP 8.1 will be November 25, 2024.
 
 Additionally, make sure that the following extensions are enabled in your PHP:
 

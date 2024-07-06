@@ -1,5 +1,10 @@
 # CodeIgniter4-Docker
 
+## Features
+1. Book room 
+2. Login, register
+3. Admin management user, room, payment,...
+
 ## Installation
 
 1. Start up your application by running:
@@ -27,3 +32,5 @@ composer update
 ```sh
 mysql -u username -p database_name < file.sql
 ```
+## Sources
+https://github.com/adnamard/Sikos-?tab=readme-ov-file

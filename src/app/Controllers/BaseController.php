@@ -33,7 +33,7 @@ abstract class BaseController extends Controller
      * class instantiation. These helpers will be available
      * to all other controllers that extend BaseController.
      *
-     * @var array
+     * @var list<string>
      */
     protected $helpers = [];
 
@@ -49,7 +49,6 @@ abstract class BaseController extends Controller
     public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
     {
         // Do Not Edit This Line
-        ini_set('memory_limit', '-1');
         parent::initController($request, $response, $logger);
 
         // Preload any models, libraries, etc, here.
