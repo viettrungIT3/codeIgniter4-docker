@@ -1,7 +1,8 @@
-FROM php:7.4-apache
+FROM php:8.1-apache
+
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
-RUN apt-get update
-RUN apt-get install -y \
+
+RUN apt-get update && apt-get install -y \
     git \
     zip \
     curl \
@@ -11,7 +12,6 @@ RUN apt-get install -y \
     libbz2-dev \
     libpng-dev \
     libjpeg-dev \
-    libmcrypt-dev \
     libreadline-dev \
     libfreetype6-dev \
     g++
@@ -41,6 +41,7 @@ RUN chmod +x /usr/local/bin/composer
 RUN composer self-update
 
 COPY src/ /var/www/html/
+
 # 6. we need a user with the same UID/GID with host user
 # so when we execute CLI commands, all the host file's ownership remains intact
 # otherwise command from inside container will create root-owned files and directories
