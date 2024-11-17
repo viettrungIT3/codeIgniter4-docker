@@ -1,67 +1,56 @@
-# CodeIgniter 4 Application Starter
+# easyAPI
 
-## What is CodeIgniter?
+## What is easyAPI?
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+easyAPI is skeleton REST API application and integrated with swagger to generate documentation API.
+With easyAPI you can generate REST API less than 5 minutes.
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+## Installation & setup
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+- clone this repository `git clone https://github.com/pandigresik/easyAPI.git` 
+- `cd easyAPI`
+- `composer install` to install dependency this application
+- change your `secret` key in `app/Config/Services.php` on line 22
+- `php spark serve` to run this application, default you can open this address http://localhost:8080 on your browser
+- Copy `env` to `.env` and tailor for your app, specifically the baseURL and any database settings.
 
-The user guide corresponding to the latest version of the framework can be found
-[here](https://codeigniter4.github.io/userguide/).
+## Generate REST API
+- `php spark api:generate`
+after that, system will ask you table name will generate that REST API. We can choose one table or all, if we want generate all write `all` or write one table name exist in your database
+If there is no error, system will generate for you controller, model and entity file.
+- Last you must add new route will display in last command to `app/Config/Routes.php`.
+- Generate api.yaml using command `./vendor/bin/openapi -o ./public/assets/api.yaml ./app` to show API docs using swagger using datasource format yaml (default)
+- Generate api.json using command `./vendor/bin/openapi -o ./public/assets/api.json ./app` to show API docs using swagger using datasource format json (optional)
+- Open API documentation in http://localhost:8080/swagger
 
-## Installation & updates
+## Example case 
+- join with other table, you can look at [ArtikelKategoriModel.php](https://github.com/pandigresik/easyAPI/blob/master/app/Models/ArtikelKategoriModel.php)
+- example parameter in swagger for order data *{"order":[{"id":"desc"},{"tgl_upload":"asc"}]}*
+- example parameter in swagger for search data *{"search":[{"id_kategori":1}]}*
+- example parameter in swagger for search range data *{"search":[{"tgl_upload":{"start":"2016-01-01", "end":"2020-01-01"} }]}*
+- example parameter in swagger for search using like *{"search":[{"judul":"membangun%25"}]}* or *{"search":[{"judul":"%25membangun%25"}]}* use `%25` not `%` you can place `%25` on before, after and combination before and after as your keyword to search data 
+- search data based on column name *{base_url}/artikels?search[id_kategori]=1*
+- order data based on column name *{base_url}/artikels?order[id]=desc&order[tgl_upload]=asc*
+- search and order data based on column name *{base_url}/artikels?search[id_kategori]=1&order[id]=desc&order[tgl_upload]=asc*
+- search with pagination *{base_url}/artikels?page=1&limit=10*
+- search and order with pagination *{base_url}/artikels?search[id_kategori]=1&order[id]=desc&order[tgl_upload]=asc&page=1&limit=10*
+- search using between operator if we want filter data based range of date or etc *{base_url}/artikels?search[tgl_upload][start]=2016-01-01&search[tgl_upload][end]=2020-01-01*
+- search using keyword *{base_url}/artikels?search[judul]=membangun%25* or *{base_url}/artikels?search[judul]=%25membangun%25* will produce like operator on query
 
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
+## Video demo installation
+[![Install easyAPI](http://img.youtube.com/vi/82tYxswCU0I/0.jpg)](http://www.youtube.com/watch?v=82tYxswCU0I "Install easyAPI")
+## Video swagger documentation generate by easyAPI
+[![Test swagger documentation generate by easyAPI](http://img.youtube.com/vi/T7V0ft0dSG0/0.jpg)](http://www.youtube.com/watch?v=T7V0ft0dSG0 "Test swagger documentation generate by easyAPI")
+## Preview
+![API Docs Preview](preview/apidocs.png)
 
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
+## Todo
+- [X] create example using this application
 
-## Setup
+## Copyright
 
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
+easyApi dikembangkan dan dimaintain oleh [asligresik](https://github.com/pandigresik)
 
-## Important Change with index.php
+## Lisensi
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
-
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
-
-**Please** read the user guide for a better explanation of how CI4 works!
-
-## Repository Management
-
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
-
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
-
-## Server Requirements
-
-PHP version 7.4 or higher is required, with the following extensions installed:
-
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
-
-> **Warning**
-> The end of life date for PHP 7.4 was November 28, 2022. If you are
-> still using PHP 7.4, you should upgrade immediately. The end of life date
-> for PHP 8.0 will be November 26, 2023.
-
-Additionally, make sure that the following extensions are enabled in your PHP:
-
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+Lisensi dari easyApi adalah [MIT License](LICENSE) namun proyek yang dibangun menyeseuaikan dengan kebijakan masing-masing

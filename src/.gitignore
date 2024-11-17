@@ -61,7 +61,6 @@ writable/uploads/*
 !writable/uploads/index.html
 
 writable/debugbar/*
-!writable/debugbar/.gitkeep
 
 php_errors.log
 
@@ -126,12 +125,3 @@ nb-configuration.xml
 /phpunit*.xml
 /.phpunit.*.cache
 
-# session
-*/writable/session/*
-
-*/.sass-cache/*
-
-
-public/assets/.sass-cache
-public/uploads/*
-composer.lock
