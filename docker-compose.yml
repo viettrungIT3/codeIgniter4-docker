@@ -40,7 +40,7 @@ services:
         networks:
             codeigniter4:
                 aliases:
-                    - "codeigniter4-db.localhost.com"
+                    - codeigniter4-db.localhost.com
 volumes:
     db_data:
     src:
