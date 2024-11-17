@@ -1,0 +1,6 @@
+[database]
+database = 
+username = 
+password = 
+[app]
+baseURL = http://almuhajirin.demasjid.test

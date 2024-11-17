@@ -1,5 +1,7 @@
-FROM php:7.4-apache
+FROM php:8.1-apache
+
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
+
 RUN apt-get update
 RUN apt-get install -y \
     git \
@@ -14,6 +16,7 @@ RUN apt-get install -y \
     libmcrypt-dev \
     libreadline-dev \
     libfreetype6-dev \
+    libpq-dev \
     g++
 
 RUN docker-php-ext-install \
@@ -22,8 +25,8 @@ RUN docker-php-ext-install \
     bcmath \
     opcache \
     calendar \
-    pdo_mysql \
-    mysqli
+    pgsql \
+    pdo_pgsql
 
 # 2. set up document root for apache
 COPY docker/apache/000-default.conf /etc/apache2/sites-available/000-default.conf
