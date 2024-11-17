@@ -3,3 +3,5 @@ apache_log/*
 .vscode/*
 
 src/composer.lock
+.DS_Store
+*/.DS_Store

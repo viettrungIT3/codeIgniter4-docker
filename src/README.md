@@ -3,15 +3,15 @@
 ## What is CodeIgniter?
 
 CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+More information can be found at the [official site](http://codeigniter.com).
 
 This repository holds a composer-installable app starter.
 It has been built from the
 [development repository](https://github.com/codeigniter4/CodeIgniter4).
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+More information about the plans for version 4 can be found in [the announcement](http://forum.codeigniter.com/thread-62615.html) on the forums.
 
-The user guide corresponding to the latest version of the framework can be found
+The user guide corresponding to this version of the framework can be found
 [here](https://codeigniter4.github.io/userguide/).
 
 ## Installation & updates
@@ -41,7 +41,7 @@ framework are exposed.
 
 ## Repository Management
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
+We use Github issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
 We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
 FEATURE REQUESTS.
 
@@ -50,18 +50,68 @@ Problems with it can be raised on our forum, or as issues in the main repository
 
 ## Server Requirements
 
-PHP version 7.4 or higher is required, with the following extensions installed:
+PHP version 7.3 or higher is required, with the following extensions installed:
 
 - [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
-
-> **Warning**
-> The end of life date for PHP 7.4 was November 28, 2022. If you are
-> still using PHP 7.4, you should upgrade immediately. The end of life date
-> for PHP 8.0 will be November 26, 2023.
+- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
 
 Additionally, make sure that the following extensions are enabled in your PHP:
 
 - json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+- [mbstring](http://php.net/manual/en/mbstring.installation.php)
+- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php)
+- xml (enabled by default - don't turn it off)
+
+## Project Used Commands
+
+reference [https://www.twilio.com/blog/create-secured-restful-api-codeigniter-php](https://www.twilio.com/blog/create-secured-restful-api-codeigniter-php)
+
+- Load Server `php spark serve`
+- Create migration `php spark migrate:create`
+- Execute migrations `php spark migrate`
+- Add Seeder `php spark make:seeder` ClientSeeder
+- Add fake data using Seeder class `php spark db:seed ClientSeeder`
+- Add Filter `php spark make:filter` JWTAuthenticationFilter
+- Add Controller `php spark make:controller` Auth
+- Add Validator `php spark make:validation`
+- Verify Routes `php spark routes`
+
+## JWT
+
+reference: [firebase/php-jwt](https://github.com/firebase/php-jwt)
+
+- Install with composer `composer require firebase/php-jwt`
+
+## Swagger Steps in Codeigniter
+
+### Swagger UI
+
+Download Files from [https://github.com/swagger-api/swagger-ui/tree/master/dist](https://github.com/swagger-api/swagger-ui/tree/master/dist)
+
+- Add html content over app/Views/
+- Add all css and js files over public/
+- Change urls to use <?= base_url('assets/swagger-ui.css') ?>
+- Specify the url of the json
+
+### Swagger PHP
+
+Reference [https://github.com/zircote/swagger-php](https://github.com/zircote/swagger-php)
+
+Install swagger-php with composer `composer require zircote/swagger-php`
+
+- Create a php file over public/
+- Add call and use OpenApi\Serializer
+
+```php
+<?php
+
+require("../../vendor/autoload.php");
+
+$openapi = \OpenApi\Generator::scan(['../../app/Controllers/']);
+
+header('Content-Type: application/json');
+echo $openapi->toJSON();
+
+```
+
+- Finally use Add annotations to your php files over app/Controllers
