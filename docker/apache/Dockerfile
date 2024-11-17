@@ -1,4 +1,4 @@
-FROM php:7.4-apache
+FROM php:8.2-apache
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 RUN apt-get update
 RUN apt-get install -y \
