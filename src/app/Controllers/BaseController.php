@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use Bonfire\View\Themeable;
 use CodeIgniter\Controller;
 use CodeIgniter\HTTP\CLIRequest;
 use CodeIgniter\HTTP\IncomingRequest;
@@ -19,8 +20,48 @@ use Psr\Log\LoggerInterface;
  *
  * For security be sure to declare any new methods as protected or private.
  */
-abstract class BaseController extends Controller
+
+/**
+ * @OA\OpenApi(
+ *     @OA\Info(
+ *         version="1.0.0",
+ *         title="swagger easycrud-ci4",
+ *         description="This is a sample server easycrud-ci4",
+ *         termsOfService="http://swagger.io/terms/",
+ *         @OA\Contact(
+ *             email="apiteam@swagger.io"
+ *         ),
+ *         @OA\License(
+ *             name="Apache 2.0",
+ *             url="http://www.apache.org/licenses/LICENSE-2.0.html"
+ *         )
+ *     ),
+ *     @OA\Server(
+ *         description="OpenApi host",
+ *         url="/api"
+ *     ),
+ *     @OA\ExternalDocumentation(
+ *         description="Find out more about Swagger",
+ *         url="http://swagger.io"
+ *     ),
+ * )
+ */
+
+/**
+ * @OA\SecurityScheme(
+ *     type="http",
+ *     description="Login with email and password to get the authentication token",
+ *     name="Token based Based",
+ *     in="header",
+ *     scheme="bearer",
+ *     bearerFormat="JWT",
+ *     securityScheme="bearer_auth",
+ * )
+ */
+class BaseController extends Controller
 {
+    use Themeable;
+
     /**
      * Instance of the main Request object.
      *
@@ -38,22 +79,13 @@ abstract class BaseController extends Controller
     protected $helpers = [];
 
     /**
-     * Be sure to declare properties for any property fetch you initialized.
-     * The creation of dynamic property is deprecated in PHP 8.2.
-     */
-    // protected $session;
-
-    /**
-     * @return void
+     * Constructor.
      */
     public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
     {
+        $this->helpers = array_merge($this->helpers, ['alerts', 'assets', 'auth', 'consent', 'setting']);
+
         // Do Not Edit This Line
-        ini_set('memory_limit', '-1');
         parent::initController($request, $response, $logger);
-
-        // Preload any models, libraries, etc, here.
-
-        // E.g.: $this->session = \Config\Services::session();
     }
 }
